@@ -1,18 +1,18 @@
 package travel.travel_API.Models;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import travel.travel_API.Enums.TypeOfLodging;
 
 import javax.annotation.Generated;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Lodging {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Enumerated(EnumType.STRING)
     private TypeOfLodging typeOfLodging;
     private String name;
     private String description;
