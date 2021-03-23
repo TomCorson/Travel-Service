@@ -1,13 +1,25 @@
 package travel.travel_API.Models;
 
+import travel.travel_API.Enums.TypeOfLodging;
+
 import javax.persistence.Entity;
 
 @Entity
-public abstract class Lodging {
+public class Lodging {
+
+    private TypeOfLodging typeOfLodging;
     private String name;
     private String description;
     private Double pricePerNight;
     //private availability
+
+    public TypeOfLodging getTypeOfLodging() {
+        return typeOfLodging;
+    }
+
+    public void setTypeOfLodging(TypeOfLodging typeOfLodging) {
+        this.typeOfLodging = typeOfLodging;
+    }
 
     public String getName() {
         return name;
