@@ -15,4 +15,15 @@ public class LodgingService {
     public List<Lodging> getAllLodging() {
        return lodgingRepo.findAll();
     }
+
+    public boolean createLodging(Lodging requestLodging) {
+        Lodging savedLodging = new Lodging();
+        savedLodging.setTypeOfLodging(requestLodging.getTypeOfLodging());
+        savedLodging.setName(requestLodging.getName());
+        savedLodging.setDescription(requestLodging.getDescription());
+        savedLodging.setPricePerNight(requestLodging.getPricePerNight());
+
+        lodgingRepo.save(savedLodging);
+        return true;
+    }
 }
