@@ -22,8 +22,14 @@ public class LodgingService {
         savedLodging.setName(requestLodging.getName());
         savedLodging.setDescription(requestLodging.getDescription());
         savedLodging.setPricePerNight(requestLodging.getPricePerNight());
+        savedLodging.setDatesBooked(requestLodging.getDatesBooked());
 
         lodgingRepo.save(savedLodging);
+        return true;
+    }
+
+    public boolean deleteLodging(Long id) {
+        lodgingRepo.deleteById(id);
         return true;
     }
 }

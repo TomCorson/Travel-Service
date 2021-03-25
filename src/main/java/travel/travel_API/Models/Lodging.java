@@ -24,7 +24,8 @@ public class Lodging {
     public Lodging() {
     }
 
-    public Lodging(TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight,ArrayList<Date> datesBooked) {
+    public Lodging(Long id, TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight,ArrayList<Date> datesBooked) {
+        this.id = id;
         this.typeOfLodging = typeOfLodging;
         this.name = name;
         this.description = description;
