@@ -5,6 +5,8 @@ import travel.travel_API.Enums.TypeOfLodging;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Entity
 public class Lodging {
@@ -17,16 +19,25 @@ public class Lodging {
     private String name;
     private String description;
     private Double pricePerNight;
-    //private availability
+    private ArrayList<Date> datesBooked;
 
     public Lodging() {
     }
 
-    public Lodging(TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight) {
+    public Lodging(TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight,ArrayList<Date> datesBooked) {
         this.typeOfLodging = typeOfLodging;
         this.name = name;
         this.description = description;
         this.pricePerNight = pricePerNight;
+        this.datesBooked = datesBooked;
+    }
+
+    public ArrayList<Date> getDatesBooked() {
+        return datesBooked;
+    }
+
+    public void setDatesBooked(ArrayList<Date> datesBooked) {
+        this.datesBooked = datesBooked;
     }
 
     public TypeOfLodging getTypeOfLodging() {
