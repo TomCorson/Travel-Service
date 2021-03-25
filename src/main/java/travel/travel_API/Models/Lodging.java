@@ -12,7 +12,7 @@ import java.util.Date;
 public class Lodging {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
     private TypeOfLodging typeOfLodging;
@@ -24,7 +24,15 @@ public class Lodging {
     public Lodging() {
     }
 
-    public Lodging(Long id, TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight,ArrayList<Date> datesBooked) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Lodging(Long id, TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight, ArrayList<Date> datesBooked) {
         this.id = id;
         this.typeOfLodging = typeOfLodging;
         this.name = name;

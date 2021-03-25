@@ -6,6 +6,7 @@ import travel.travel_API.Models.Lodging;
 import travel.travel_API.Services.LodgingService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class LodgingController {
@@ -16,6 +17,10 @@ public class LodgingController {
     @GetMapping
     public List<Lodging> getAllLodging(){
         return lodgingService.getAllLodging();
+    }
+    @GetMapping("/{id}")
+    public Optional<Lodging> getLodging(@PathVariable Long id){
+        return lodgingService.getLodging(id);
     }
     @PostMapping
     public boolean createLodging(@RequestBody Lodging lodging){

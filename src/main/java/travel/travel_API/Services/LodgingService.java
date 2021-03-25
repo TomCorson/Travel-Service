@@ -6,6 +6,7 @@ import travel.travel_API.Models.Lodging;
 import travel.travel_API.Repos.LodgingRepo;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LodgingService {
@@ -31,5 +32,9 @@ public class LodgingService {
     public boolean deleteLodging(Long id) {
         lodgingRepo.deleteById(id);
         return true;
+    }
+
+    public Optional<Lodging> getLodging(Long id) {
+        return lodgingRepo.findById(id);
     }
 }
