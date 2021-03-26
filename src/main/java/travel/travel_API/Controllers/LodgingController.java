@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import travel.travel_API.Models.Lodging;
 import travel.travel_API.Services.LodgingService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,5 +31,9 @@ public class LodgingController {
     @DeleteMapping("/{id}")
     public boolean deleteLodging(@PathVariable Long id){
         return lodgingService.deleteLodging(id);
+    }
+    @PutMapping("/{id}")
+    public String requestDates(@PathVariable Long id, @RequestBody List<Date> dates){
+        return lodgingService.requestDates(id, dates);
     }
 }
