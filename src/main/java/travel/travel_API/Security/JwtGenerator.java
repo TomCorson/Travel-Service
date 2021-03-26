@@ -16,7 +16,7 @@ public class JwtGenerator {
 
         return Jwts.builder()
                 .setClaims(claims)
-                .signWith(SignatureAlgorithm.HS384,"ThisIsNotAVerySecureSecret")
+                .signWith(SignatureAlgorithm.HS384,System.getenv("SECRET"))
                 .compact();
     }
 }

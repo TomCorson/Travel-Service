@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import travel.travel_API.SecurityModel.JwtUser;
 @Component
 public class JwtValidator {
-    private String secret = "ThisIsNotAVerySecureSecret";
+    private String secret = System.getenv("SECRET");
 
     public JwtUser validate(String token) {
         JwtUser jwtUser = null;
