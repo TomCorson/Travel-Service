@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import travel.travel_API.SecurityModel.JwtAuthenticationToken;
 import travel.travel_API.SecurityModel.JwtUser;
-
+import travel.travel_API.SecurityModel.JwtUserDetails;
 
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
         }
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList(jwtUser.getRole());
-        return new JwtUserDetails(jwtuser.getUserName(),jwtUser.getUserId(), token, grantedAuthorities);
+        return new JwtUserDetails(jwtUser.getUserName(),jwtUser.getUserId(), token, grantedAuthorities);
     }
     @Override
     public boolean supports(Class<?> aClass){
