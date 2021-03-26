@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import travel.travel_API.Models.Lodging;
 import travel.travel_API.Repos.LodgingRepo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,8 +44,8 @@ public class LodgingService {
 
 
 
-    //Data trucated bc its too long. Also system allowing multiple bookings of same dates
-    public String requestDates(Long id, List<Date> dates) {
+    //change database type to date
+    public String requestDates(Long id, List<LocalDate> dates) {
         Optional<Lodging> lodging = lodgingRepo.findById(id);
         if(checkAvailability(dates,lodging)){
             Lodging updatedLodging = new Lodging();
@@ -54,7 +55,7 @@ public class LodgingService {
             updatedLodging.setDescription(lodging.get().getDescription());
             updatedLodging.setPricePerNight(lodging.get().getPricePerNight());
 
-            ArrayList<Date> combinedDates = lodging.get().getDatesBooked();
+            ArrayList<LocalDate> combinedDates = lodging.get().getDatesBooked();
             combinedDates.addAll(dates);
             updatedLodging.setDatesBooked(combinedDates);
             lodgingRepo.save(updatedLodging);
@@ -64,10 +65,10 @@ public class LodgingService {
             return "Dates unavailable";
 
     }
-    public boolean checkAvailability(List<Date> dates, Optional<Lodging> lodging){
+    public boolean checkAvailability(List<LocalDate> dates, Optional<Lodging> lodging){
 
        if(lodging.isPresent()) {
-           ArrayList<Date> bookedDates = lodging.get().getDatesBooked();
+           ArrayList<LocalDate> bookedDates = lodging.get().getDatesBooked();
            return bookedDates.contains(dates) ? false:true;
        }
        else

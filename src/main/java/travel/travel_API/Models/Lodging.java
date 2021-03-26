@@ -1,12 +1,10 @@
 package travel.travel_API.Models;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import travel.travel_API.Enums.TypeOfLodging;
-
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
+
+
 
 @Entity
 public class Lodging {
@@ -19,7 +17,7 @@ public class Lodging {
     private String name;
     private String description;
     private Double pricePerNight;
-    private ArrayList<Date> datesBooked;
+    private ArrayList<LocalDate> datesBooked;
 
     public Lodging() {
     }
@@ -32,7 +30,7 @@ public class Lodging {
         this.id = id;
     }
 
-    public Lodging(Long id, TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight, ArrayList<Date> datesBooked) {
+    public Lodging(Long id, TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight, ArrayList<LocalDate> datesBooked) {
         this.id = id;
         this.typeOfLodging = typeOfLodging;
         this.name = name;
@@ -41,11 +39,11 @@ public class Lodging {
         this.datesBooked = datesBooked;
     }
 
-    public ArrayList<Date> getDatesBooked() {
+    public ArrayList<LocalDate> getDatesBooked() {
         return datesBooked;
     }
 
-    public void setDatesBooked(ArrayList<Date> datesBooked) {
+    public void setDatesBooked(ArrayList<LocalDate> datesBooked) {
         this.datesBooked = datesBooked;
     }
 
