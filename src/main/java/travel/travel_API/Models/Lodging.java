@@ -2,7 +2,7 @@ package travel.travel_API.Models;
 import travel.travel_API.Enums.TypeOfLodging;
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.time.LocalDate;
+import java.sql.Date;
 
 
 
@@ -17,7 +17,7 @@ public class Lodging {
     private String name;
     private String description;
     private Double pricePerNight;
-    private ArrayList<LocalDate> datesBooked;
+    private ArrayList<Date> datesBooked;
 
     public Lodging() {
     }
@@ -30,7 +30,7 @@ public class Lodging {
         this.id = id;
     }
 
-    public Lodging(Long id, TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight, ArrayList<LocalDate> datesBooked) {
+    public Lodging(Long id, TypeOfLodging typeOfLodging, String name, String description, Double pricePerNight, ArrayList<Date> datesBooked) {
         this.id = id;
         this.typeOfLodging = typeOfLodging;
         this.name = name;
@@ -39,11 +39,11 @@ public class Lodging {
         this.datesBooked = datesBooked;
     }
 
-    public ArrayList<LocalDate> getDatesBooked() {
+    public ArrayList<Date> getDatesBooked() {
         return datesBooked;
     }
 
-    public void setDatesBooked(ArrayList<LocalDate> datesBooked) {
+    public void setDatesBooked(ArrayList<Date> datesBooked) {
         this.datesBooked = datesBooked;
     }
 

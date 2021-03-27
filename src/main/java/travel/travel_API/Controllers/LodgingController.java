@@ -6,7 +6,7 @@ import travel.travel_API.Models.Lodging;
 import travel.travel_API.Services.LodgingService;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +34,7 @@ public class LodgingController {
         return lodgingService.deleteLodging(id);
     }
     @PutMapping("/{id}")
-    public String requestDates(@PathVariable Long id, @RequestBody List<LocalDate> dates){
+    public String requestDates(@PathVariable Long id, @RequestBody List<Date> dates){
         return lodgingService.requestDates(id, dates);
     }
 }
