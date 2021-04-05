@@ -37,7 +37,7 @@ public class LodgingController {
     public String requestDates(@PathVariable Long id, @RequestBody List<Date> dates){
         return lodgingService.requestDates(id, dates);
     }
-    @PutMapping("/{id}")
+    @PutMapping("cancelBooking/{id}")
     public String cancelBooking(@PathVariable Long id, @RequestBody List<Date> dates){
         return lodgingService.cancelBooking(id, dates);
     }
