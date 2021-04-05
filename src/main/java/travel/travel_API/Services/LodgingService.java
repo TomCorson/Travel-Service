@@ -47,7 +47,7 @@ public class LodgingService {
     //change database type to date
     public String requestDates(Long id, List<Date> dates) {
         Optional<Lodging> lodging = lodgingRepo.findById(id);
-        if(checkAvailability(dates,lodging)){
+        if(dateIsAvailabile(dates,lodging)){
             Lodging updatedLodging = new Lodging();
             updatedLodging.setId(lodging.get().getId());
             updatedLodging.setTypeOfLodging(lodging.get().getTypeOfLodging());
@@ -65,11 +65,15 @@ public class LodgingService {
             return "Dates unavailable";
 
     }
-    public boolean checkAvailability(List<Date> dates, Optional<Lodging> lodging){
+    public boolean dateIsAvailabile(List<Date> dates, Optional<Lodging> lodging){
 
        if(lodging.isPresent()) {
            ArrayList<Date> bookedDates = lodging.get().getDatesBooked();
-           return bookedDates.contains(dates) ? false:true;
+           for(Date requestedDate: dates){
+               if(bookedDates.contains(requestedDate))
+                   return false;
+           }
+           return true;
        }
        else
            return false;
