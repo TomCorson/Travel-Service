@@ -48,17 +48,9 @@ public class LodgingService {
     public String requestDates(Long id, List<Date> dates) {
         Optional<Lodging> lodging = lodgingRepo.findById(id);
         if(dateIsAvailabile(dates,lodging)){
-            Lodging updatedLodging = new Lodging();
-            updatedLodging.setId(lodging.get().getId());
-            updatedLodging.setTypeOfLodging(lodging.get().getTypeOfLodging());
-            updatedLodging.setName(lodging.get().getName());
-            updatedLodging.setDescription(lodging.get().getDescription());
-            updatedLodging.setPricePerNight(lodging.get().getPricePerNight());
-
             ArrayList<Date> combinedDates = lodging.get().getDatesBooked();
             combinedDates.addAll(dates);
-            updatedLodging.setDatesBooked(combinedDates);
-            lodgingRepo.save(updatedLodging);
+            updateLodgingDates(lodging, combinedDates);
             return "Booking successful";
         }
         else
@@ -77,6 +69,33 @@ public class LodgingService {
        }
        else
            return false;
+    }
+
+    public String cancelBooking(Long id, List<Date> dates) {
+        Optional<Lodging> lodging = lodgingRepo.findById(id);
+        if(lodging.isPresent()){
+            ArrayList<Date> bookedDates = lodging.get().getDatesBooked();
+            for(Date dateToDelete: dates){
+                if(bookedDates.contains(dateToDelete)){
+                    bookedDates.remove(dateToDelete);
+                    System.out.println("removed " + dateToDelete.toString());
+                }
+            }
+            updateLodgingDates(lodging, bookedDates);
+            return "Dates deleted";
+        }
+        else
+            return "lodging id not found";
+    }
+    public void updateLodgingDates(Optional<Lodging> originalLodging, ArrayList<Date> newDates){
+        Lodging updatedLodging = new Lodging();
+        updatedLodging.setId(originalLodging.get().getId());
+        updatedLodging.setTypeOfLodging(originalLodging.get().getTypeOfLodging());
+        updatedLodging.setName(originalLodging.get().getName());
+        updatedLodging.setDescription(originalLodging.get().getDescription());
+        updatedLodging.setPricePerNight(originalLodging.get().getPricePerNight());
+        updatedLodging.setDatesBooked(newDates);
+        lodgingRepo.save(updatedLodging);
     }
 }
 
