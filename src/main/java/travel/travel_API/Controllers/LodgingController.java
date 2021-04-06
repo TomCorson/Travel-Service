@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import travel.travel_API.Models.Lodging;
 import travel.travel_API.Services.LodgingService;
-
-import java.time.LocalDate;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
