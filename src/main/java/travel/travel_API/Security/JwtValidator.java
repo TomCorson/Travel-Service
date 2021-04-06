@@ -4,6 +4,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Component;
 import travel.travel_API.SecurityModel.JwtUser;
+
+import java.util.Date;
+
 @Component
 public class JwtValidator {
     private String secret = System.getenv("SECRET");

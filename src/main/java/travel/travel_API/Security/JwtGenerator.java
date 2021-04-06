@@ -16,14 +16,15 @@ public class JwtGenerator {
 
     public String generate(JwtUser jwtUser){
         Claims claims = Jwts.claims()
-                .setSubject(jwtUser.getUserName());
+                .setSubject(jwtUser.getUserName())
+                .setExpiration(new Date(nowMillis + 300000));//5 min
         claims.put("userId",String.valueOf(jwtUser.getUserId()));
         claims.put("role",jwtUser.getRole());
+
 
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
-                .setExpiration(new Date(nowMillis + 2000))
                 .signWith(SignatureAlgorithm.HS384,System.getenv("SECRET"))
                 .compact();
     }
